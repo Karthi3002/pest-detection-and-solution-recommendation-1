@@ -525,8 +525,13 @@ elif(app_mode=="About"):
 #Prediction Page
 elif(app_mode=="Disease Recognition"):
     st.header("Disease Recognition")
-    imageCaptured=st.camera_input("capture image",key="firstCamera")
-    test_image = imageCaptured
+    choice = st.radio("Choose image input method:", ("Upload image", "Capture image"))
+    if choice == "Upload image":
+        imageUpload = st.file_uploader("Choose a file")
+        test_image = imageUpload
+    elif choice == "Capture image":
+        imageCapture = st.camera_input("Capture image", key="firstCamera")
+        test_image = imageCapture
     if(st.button("Show Image")):
         st.image(test_image,width=4,use_column_width=True)
     #Predict button
